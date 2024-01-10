@@ -1,0 +1,289 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+    --background: 234 33% 5%;
+    --foreground: 232 38% 94%;
+    --card: 234 31% 8%;
+    --card-foreground: 232 38% 94%;
+    --popover: 234 31% 8%;
+    --popover-foreground: 232 38% 94%;
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 234 27% 14%;
+    --secondary-foreground: 232 38% 94%;
+    --muted: 234 27% 14%;
+    --muted-foreground: 234 18% 60%;
+    --accent: 234 27% 17%;
+    --accent-foreground: 232 38% 94%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 234 26% 16%;
+    --input: 234 31% 8%;
+    --ring: 239 84% 67%;
+    --chart-1: 239 84% 67%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+}
+
+@layer components {
+  /* ── Forms ── */
+  .form-btn {
+    @apply bg-primary text-white hover:bg-primary/90 inline-flex min-h-14 w-full items-center justify-center rounded-lg px-6 py-2 font-bold text-base transition-colors !important;
+  }
+
+  .form-input {
+    @apply w-full min-h-14 border border-dark-400 text-base font-bold placeholder:font-normal text-white placeholder:text-light-100 focus-visible:ring-1 focus-visible:ring-primary focus-visible:shadow-none bg-dark-300 rounded-lg !important;
+  }
+
+  /* ── Book Card ── */
+  .book-title {
+    @apply mt-2 line-clamp-1 text-base font-semibold text-white xs:text-xl;
+  }
+
+  .book-genre {
+    @apply mt-1 line-clamp-1 text-sm italic text-light-100 xs:text-base;
+  }
+
+  .book-loaned {
+    @apply flex flex-row items-center gap-1 max-xs:justify-center;
+  }
+
+  .book-btn {
+    @apply bg-dark-300 border border-dark-400 mt-3 min-h-14 w-full font-bebas-neue text-base text-primary hover:bg-dark-600 transition-colors;
+  }
+
+  /* ── Borrowed Book ── */
+  .borrowed-book {
+    @apply gradient-vertical p-5 rounded-2xl xs:w-min w-full relative border border-dark-400;
+  }
+
+  .borrowed-book_cover {
+    @apply py-4 lg:px-16 px-10 flex justify-center items-center w-full rounded-lg;
+  }
+
+  /* ── Book Cover sizes ── */
+  .book-cover_extra_small { @apply w-[28.95px] h-10; }
+  .book-cover_small       { @apply w-[55px] h-[76px]; }
+  .book-cover_medium      { @apply w-[144px] h-[199px]; }
+  .book-cover_regular     { @apply xs:w-[174px] w-[114px] xs:h-[239px] h-[169px]; }
+  .book-cover_wide        { @apply xs:w-[296px] w-[256px] xs:h-[404px] h-[354px]; }
+
+  /* ── Book List ── */
+  .book-list {
+    @apply mt-10 flex flex-wrap gap-5 max-xs:justify-between xs:gap-10;
+  }
+
+  /* ── Book Overview ── */
+  .book-overview {
+    @apply flex flex-col-reverse items-center gap-12 sm:gap-32 xl:flex-row xl:gap-8;
+  }
+
+  .book-overview h1 {
+    @apply text-5xl font-semibold text-white md:text-7xl;
+  }
+
+  .book-info {
+    @apply mt-7 flex flex-row flex-wrap gap-4 text-xl text-light-100;
+  }
+
+  .book-copies {
+    @apply flex flex-row flex-wrap gap-4 mt-1;
+  }
+
+  .book-copies p {
+    @apply text-xl text-light-100;
+  }
+
+  .book-copies p span {
+    @apply ml-2 font-semibold text-primary;
+  }
+
+  .book-description {
+    @apply mt-2 text-justify text-xl text-light-100;
+  }
+
+  .book-overview_btn {
+    @apply mt-4 min-h-14 w-fit bg-primary text-white hover:bg-primary/90 max-md:w-full transition-colors !important;
+  }
+
+  /* ── File Upload ── */
+  .upload-btn {
+    @apply flex min-h-14 w-full items-center justify-center gap-1.5 rounded-lg border border-dashed border-dark-400 hover:border-primary/50 transition-colors;
+  }
+
+  .upload-filename {
+    @apply mt-1 text-center text-xs text-light-100;
+  }
+
+  .progress {
+    @apply rounded-full bg-green-800 p-0.5 text-center font-bebas-neue text-[8px] font-bold leading-none text-white;
+  }
+
+  /* ── Search ── */
+  .search {
+    @apply relative mt-10 flex min-h-14 w-full items-center rounded-xl bg-dark-300 px-4 border border-dark-400 focus-within:border-primary/50 transition-colors;
+  }
+
+  .search-input {
+    @apply w-full border-none font-bold placeholder:font-normal text-white placeholder:text-light-100 focus-visible:ring-0 focus-visible:shadow-none bg-transparent !important;
+  }
+
+  /* ── Book Receipt ── */
+  .book-receipt_admin-btn {
+    @apply bg-dark-300 rounded-lg text-primary font-semibold hover:bg-dark-600 border border-dark-400 transition-colors !important;
+  }
+
+  /* ── Book Ticket ── */
+  #book-ticket {
+    @apply relative mt-10 hidden w-[544px] overflow-hidden bg-dark-300 py-8 border border-dark-400 rounded-xl;
+  }
+
+  #book-ticket #book-details div {
+    @apply space-y-1 rounded-lg border border-dark-400 p-3;
+  }
+
+  #book-ticket #book-details div p:first-child {
+    @apply text-xs text-light-100;
+  }
+
+  #book-ticket #book-details div p:last-child {
+    @apply text-sm font-bold text-white;
+  }
+
+  #book-ticket #book-divider div:first-child {
+    @apply absolute -left-3.5 top-1/2 size-7 -translate-y-1/2 rounded-full bg-dark-100;
+  }
+
+  #book-ticket #book-divider div:last-child {
+    @apply absolute -right-3.5 top-1/2 size-7 -translate-y-1/2 rounded-full bg-dark-100;
+  }
+
+  .book-ticket-circles {
+    @apply absolute inset-x-0 -bottom-6 flex flex-row gap-1.5;
+  }
+
+  /* ── Not Found ── */
+  #not-found {
+    @apply flex justify-center items-center flex-col text-center w-full;
+  }
+
+  #not-found h4 {
+    @apply text-white mt-6 font-semibold text-2xl;
+  }
+
+  #not-found p {
+    @apply text-light-100 w-[360px] mt-1;
+  }
+
+  .not-found-btn {
+    @apply bg-primary font-bebas-neue min-w-[360px] mt-6 text-white text-xl hover:bg-primary/90 min-h-12 transition-colors !important;
+  }
+
+  /* ── Pagination ── */
+  #pagination {
+    @apply flex flex-row justify-end gap-3;
+  }
+
+  .pagination-btn_light {
+    @apply bg-dark-300 text-light-300 hover:bg-dark-600 border border-dark-400 transition-colors !important;
+  }
+
+  .pagination-btn_dark {
+    @apply bg-dark-300 hover:bg-dark-600 border border-dark-400 transition-colors !important;
+  }
+
+  #pagination p {
+    @apply text-sm inline-flex items-center font-semibold px-4 py-1.5 rounded-lg text-center text-white bg-dark-300 border border-dark-400;
+  }
+
+  /* ── Sort / Select ── */
+  .select-trigger {
+    @apply w-40 h-10 px-4 bg-dark-300 text-light-100 border-dark-400 rounded-lg !important;
+  }
+
+  .select-content {
+    @apply bg-dark-200 text-light-100 border-dark-400 !important;
+  }
+
+  .select-item {
+    @apply focus:bg-dark-600 focus:text-white !important;
+  }
+}
+
+@layer utilities {
+  .gradient-vertical {
+    background: linear-gradient(180deg, #131526 0%, #0d0f1a 100%);
+  }
+
+  .gradient-gray {
+    background: linear-gradient(270deg, #1a1c30 0%, #1e2035 100%);
+  }
+
+  .gradient-blue {
+    background: linear-gradient(180deg, #131526 0%, #07080e 100%);
+  }
+
+  /* ── Auth ── */
+  .auth-container {
+    @apply relative flex flex-col-reverse text-light-100 sm:flex-row min-h-screen;
+  }
+
+  .auth-form {
+    @apply my-auto flex h-full min-h-screen flex-1 items-center bg-pattern bg-cover bg-top bg-dark-100 px-5 py-10;
+  }
+
+  .auth-box {
+    @apply gradient-vertical mx-auto flex max-w-xl flex-col gap-6 rounded-xl p-10 border border-dark-400 shadow-2xl;
+  }
+
+  .auth-illustration {
+    @apply sticky h-40 w-full sm:top-0 sm:h-screen sm:flex-1;
+  }
+
+  /* ── Root ── */
+  .root-container {
+    @apply flex min-h-screen flex-1 flex-col bg-pattern bg-cover bg-top bg-dark-100 px-5 xs:px-10 md:px-16;
+  }
+
+  /* ── Book Details ── */
+  .book-details {
+    @apply lg:mt-36 mt-16 mb-20 flex flex-col gap-16 lg:flex-row;
+  }
+
+  .book-details h3 {
+    @apply text-xl font-semibold text-primary;
+  }
+
+  /* ── Library ── */
+  .library {
+    @apply mx-auto flex max-w-xl w-full flex-col text-center;
+  }
+
+  .library-subtitle {
+    @apply text-lg font-semibold uppercase tracking-widest text-light-100;
+  }
+
+  .library-title {
+    @apply mt-2 text-3xl font-semibold text-white xs:text-5xl;
+  }
+}
