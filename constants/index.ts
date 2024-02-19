@@ -3,14 +3,14 @@ export const navigationLinks = [
     href: "/library",
     label: "Library",
   },
-
   {
-    img: "/icons/user.svg",
-    selectedImg: "/icons/user-fill.svg",
     href: "/my-profile",
     label: "My Profile",
   },
 ];
+
+export const UNIVERSITY_NAME = "NUST" as const;
+export const APP_NAME = "Arcadia" as const;
 
 export const adminSideBarLinks = [
   {
