@@ -8,7 +8,7 @@ const Header = ({ session }: { session: Session }) => {
           {session?.user?.name}
         </h2>
         <p className="text-base text-light-100 mt-1">
-          Manage your library users, books, and borrow records
+          Manage NUST library users, books, and borrow records
         </p>
       </div>
     </header>
