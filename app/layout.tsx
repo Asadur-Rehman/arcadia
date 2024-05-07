@@ -27,6 +27,7 @@ export const metadata: Metadata = {
   title: "Arcadia",
   description:
     "Arcadia is a modern library management platform for NUST students and administrators.",
+  keywords: ["library", "NUST", "books", "university", "Arcadia"],
 };
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
