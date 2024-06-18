@@ -135,6 +135,10 @@ arcadia/
 
 Deploy to Vercel. Add all environment variables from `.env.local` to your Vercel project settings, then trigger a deployment. Set `NEXT_PUBLIC_PROD_API_ENDPOINT` to your Vercel deployment URL.
 
+## License
+
+MIT
+
 ## Author
 
-Built by **Asad**
+Built by **Asad** — NUST student, software engineering enthusiast.
