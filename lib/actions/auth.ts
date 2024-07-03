@@ -65,22 +65,24 @@ export const signUp = async (params: AuthCredentials) => {
       email,
       universityId,
       password: hashedPassword,
-      universityCard,
+      universityCard: universityCard ?? "",
     });
-
-    await workflowClient.trigger({
-      url: `${config.env.prodApiEndpoint}/api/workflows/onboarding`,
-      body: {
-        email,
-        fullName,
-      },
-    });
-
-    await signInWithCredentials({ email, password });
-
-    return { success: true };
   } catch (error) {
-    console.log(error, "Signup error");
+    console.log(error, "Signup error — DB insert failed");
     return { success: false, error: "Signup error" };
   }
+
+  // Trigger onboarding email — non-critical, never block sign-up
+  try {
+    await workflowClient.trigger({
+      url: `${config.env.prodApiEndpoint}/api/workflows/onboarding`,
+      body: { email, fullName },
+    });
+  } catch (workflowError) {
+    console.log("Onboarding workflow skipped (QStash not configured)");
+  }
+
+  await signInWithCredentials({ email, password });
+
+  return { success: true };
 };

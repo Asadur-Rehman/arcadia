@@ -94,6 +94,11 @@ const AuthForm = <T extends FieldValues>({
                 <FormItem>
                   <FormLabel className="capitalize">
                     {FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}
+                    {field.name === "universityCard" && (
+                      <span className="ml-1 text-xs font-normal text-light-100">
+                        (optional)
+                      </span>
+                    )}
                   </FormLabel>
                   <FormControl>
                     {field.name === "universityCard" ? (
