@@ -14,11 +14,15 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 
   if (!session?.user?.id) redirect("/sign-in");
 
+  // redirect() throws internally — TypeScript doesn't narrow optional chains
+  // through it, so we extract the id explicitly after the guard.
+  const userId = session.user!.id!;
+
   const isAdmin = await withDbRetry(() =>
     db
       .select({ isAdmin: users.role })
       .from(users)
-      .where(eq(users.id, session.user.id))
+      .where(eq(users.id, userId))
       .limit(1)
       .then((res) => res[0]?.isAdmin === "ADMIN"),
   );

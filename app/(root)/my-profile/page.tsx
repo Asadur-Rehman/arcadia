@@ -13,6 +13,9 @@ const Page = async () => {
   const session = await auth();
   if (!session?.user?.id) redirect("/sign-in");
 
+  // redirect() throws internally — extract after guard so TypeScript is happy
+  const userId = session.user!.id!;
+
   const borrowed = await withDbRetry(() =>
     db
       .select({
@@ -30,7 +33,7 @@ const Page = async () => {
       })
       .from(borrowRecords)
       .leftJoin(books, eq(borrowRecords.bookId, books.id))
-      .where(eq(borrowRecords.userId, session.user.id))
+      .where(eq(borrowRecords.userId, userId))
       .orderBy(desc(borrowRecords.borrowDate)),
   );
 

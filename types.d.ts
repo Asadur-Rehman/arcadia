@@ -12,6 +12,7 @@ interface Book {
   videoUrl: string;
   summary: string;
   createdAt: Date | null;
+  isLoanedBook?: boolean;
 }
 
 interface AuthCredentials {
@@ -19,7 +20,7 @@ interface AuthCredentials {
   email: string;
   password: string;
   universityId: number;
-  universityCard: string;
+  universityCard?: string;
 }
 
 interface BookParams {
