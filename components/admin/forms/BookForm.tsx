@@ -26,7 +26,7 @@ interface Props extends Partial<Book> {
   type?: "create" | "update";
 }
 
-const BookForm = ({ type, ...book }: Props) => {
+const BookForm = ({ ..._book }: Props) => {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof bookSchema>>({

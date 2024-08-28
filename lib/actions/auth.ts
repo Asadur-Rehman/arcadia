@@ -78,7 +78,7 @@ export const signUp = async (params: AuthCredentials) => {
       url: `${config.env.prodApiEndpoint}/api/workflows/onboarding`,
       body: { email, fullName },
     });
-  } catch (workflowError) {
+  } catch {
     console.log("Onboarding workflow skipped (QStash not configured)");
   }
 

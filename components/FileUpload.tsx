@@ -2,7 +2,6 @@
 
 import { IKImage, ImageKitProvider, IKUpload, IKVideo } from "imagekitio-next";
 import config from "@/lib/config";
-import ImageKit from "imagekit";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { toast } from "@/hooks/use-toast";
@@ -31,8 +30,9 @@ const authenticator = async () => {
     const { signature, expire, token } = data;
 
     return { token, expire, signature };
-  } catch (error: any) {
-    throw new Error(`Authentication request failed: ${error.message}`);
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    throw new Error(`Authentication request failed: ${msg}`);
   }
 };
 
@@ -70,8 +70,8 @@ const FileUpload = ({
     text: variant === "dark" ? "text-light-100" : "text-dark-400",
   };
 
-  const onError = (error: any) => {
-    console.log(error);
+  const onError = (error: unknown) => {
+    console.error(error);
 
     toast({
       title: `${type} upload failed`,
@@ -80,7 +80,7 @@ const FileUpload = ({
     });
   };
 
-  const onSuccess = (res: any) => {
+  const onSuccess = (res: { filePath: string }) => {
     setFile(res);
     onFileChange(res.filePath);
 
@@ -144,7 +144,7 @@ const FileUpload = ({
           e.preventDefault();
 
           if (ikUploadRef.current) {
-            // @ts-ignore
+            // @ts-expect-error — IKUpload ref doesn't expose click() in its types
             ikUploadRef.current?.click();
           }
         }}

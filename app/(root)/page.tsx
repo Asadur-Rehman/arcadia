@@ -1,7 +1,7 @@
 import BookList from "@/components/BookList";
 import BookOverview from "@/components/BookOverview";
 import { db, withDbRetry } from "@/database/drizzle";
-import { books, users } from "@/database/schema";
+import { books } from "@/database/schema";
 import { auth } from "@/auth";
 import { desc } from "drizzle-orm";
 
