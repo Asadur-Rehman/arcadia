@@ -12,11 +12,16 @@ export const db = drizzle({ client: sql, casing: "snake_case" });
 export async function withDbRetry<T>(fn: () => Promise<T>): Promise<T> {
   try {
     return await fn();
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const e = err as Record<string, unknown> & {
+      sourceError?: { code?: string };
+      cause?: { code?: string };
+      message?: string;
+    };
     const isTimeout =
-      err?.sourceError?.code === "ETIMEDOUT" ||
-      err?.cause?.code === "ETIMEDOUT" ||
-      err?.message?.includes("fetch failed");
+      e?.sourceError?.code === "ETIMEDOUT" ||
+      e?.cause?.code === "ETIMEDOUT" ||
+      e?.message?.includes("fetch failed");
 
     if (isTimeout) {
       await new Promise((r) => setTimeout(r, 3000));
