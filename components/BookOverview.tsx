@@ -22,9 +22,11 @@ const BookOverview = async ({
   id,
   userId,
 }: Props) => {
-  const [user] = await withDbRetry(() =>
-    db.select().from(users).where(eq(users.id, userId)).limit(1),
-  );
+  const [user] = userId
+    ? await withDbRetry(() =>
+        db.select().from(users).where(eq(users.id, userId)).limit(1),
+      )
+    : [];
 
   const borrowingEligibility = {
     isEligible: availableCopies > 0 && user?.status === "APPROVED",
